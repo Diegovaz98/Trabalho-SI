@@ -19,55 +19,66 @@
   </head>
   <body>
 
-     <div class="barra-lateral">
-      
-      <div class="menu-img">
+    <div class="container-flex">
+      <div class="barra-lateral">  
+        <div class="menu-img">
+          <div>
+            <img style="border-radius: 50%;" src="Imagens/usuario.jpg" width="100px" height="100px">
+          </div>
+          <div class="inf-usuario">
+            <h4>Admin</h4>
+            <p>Estagiario</p>
 
-        <div>
-          <img style="border-radius: 50%;" src="Imagens/usuario.jpg" width="100px" height="100px">
-        </div>
+            <ul class="list-inline">
+              <li class="list-group-item color"> <a href="#"> <img src="Imagens/user.png" class="tam-fix" ></a> </li>
+              <li class="list-group-item color"> <a href="#"> <img src="Imagens/edit.png" class="tam-fix" ></a> </li>
+              <li class="list-group-item color"> <a href="#"> <img src="Imagens/logout.png" class="tam-fix" ></a>  </li>
+            </ul>
+          </div>
+        </div>          
+        <nav>
+          <ul class="list-group font-size">
+            <li class="list-group-item back-list" > Menu</li>
+            <a href="inicio.html"> <li class="list-group-item back-list"> <span class="glyphicon glyphicon-globe" style="padding-right: 5px;"></span> Inicio</li> </a>
 
-        <div class="inf-usuario">
-          <h4>Admin</h4>
-          <p>Estagiario</p>
+            <a href="cadastrar.html"><li class="list-group-item back-list"> <span class="glyphicon glyphicon-plus" style="padding-right: 5px;" ></span> Cadastrar</li> </a>
 
-          <ul class="list-inline">
-            <li class="list-group-item back-list"> 1 </li>
-            <li class="list-group-item back-list"> 1 </li>
-            <li class="list-group-item back-list"> 1 </li>
+            <a href="cadastrados.html"><li class="list-group-item back-list"> <span class="glyphicon glyphicon-folder-open" style="padding-right: 5px;"></span> Cadastrados</li> </a>
           </ul>
+        </nav>
+      </div>
+
+      <div class="parte-central">
+        <h2>Estatísticas</h2>
+
+        <div class="container-flex" id="central">
+          <div class="inf-boxes"> 
+            <div style="padding: 5px;">
+
+              <img src="Imagens/visitors.png" class="tam-fix-box">
+
+            </div>
+            <h5> <button class="btn btn-primary"> Visitors</button></h5>
+
+          </div>
+          
+          <div class="inf-boxes"> 
+
+            <div style="padding: 5px;">
+
+              <img src="Imagens/alvo.png" class="tam-fix-box">
+
+            </div>
+            <h5><button class="btn btn-primary"> New Order</button></h5>
+
+          </div>
+
+
         </div>
 
-      </div>          
-      <nav>
-
-        <ul class="list-group font-size">
-          <li class="list-group-item back-list" > Menu</li>
-          <a href="inicio.html"> <li class="list-group-item back-list"> <span class="glyphicon glyphicon-globe" style="padding-right: 5px;"></span> Inicio</li> </a>
-
-          <a href="cadastrar.html"><li class="list-group-item back-list"> <span class="glyphicon glyphicon-plus" style="padding-right: 5px;" ></span> Cadastrar</li> </a>
-
-          <a href="cadastrados.html"><li class="list-group-item back-list"> <span class="glyphicon glyphicon-folder-open" style="padding-right: 5px;"></span> Cadastrados</li> </a>
-          
-        </ul>
-
-      </nav>
-
-
-       </div> 
-
-
-
-
-
-
-    
+        <h2> Últimas Cadastradas </h2>
+      </div>    
     </div>
-  
-
-
-    
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
