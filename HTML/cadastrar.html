@@ -20,15 +20,7 @@
   <body>
     <div class="container-flex">
       <div class="barra-lateral">  
-        <div class="menu-img">
-          <div class="inf-usuario">
-            <h1>Nome_usuario</h1>
-
-            <ul class="list-inline">
-              <li class="list-group-item color"> <a href="#"> <img src="Imagens/logout.png" class="tam-fix" ></a>  </li>
-            </ul>
-          </div>
-        </div>          
+            
         <nav>
           <ul class="list-group font-size">
             <li class="list-group-item back-list" > Menu</li>
@@ -40,66 +32,84 @@
           </ul>
         </nav>
       </div>
-
       <div class="parte-central">
-
-        <div class="titulo-centro">
-          <h3> FORMULÁRIO DE EXTRAÇÃO DE INFORMAÇÕES DE NOTÍCIAS DA MÍDIA SOBRE EVENTOS DE INTERESSE A SAÚDE </h3>
-        </div>
-
-        <div class="titulo-centro">
-          <h4>DADOS GERAIS DA NOTÍCIA</h4>
-        </div>
-        <form>
-          <div class="form-group">
-            <label for="tituloOriginal">1) TÍTULO ORIGINAL DA NOTÍCIA:</label>
-            <input type="text" class="form-control" id="tituloOriginal" placeholder="Título original da notícia">
+          <div class="dropdown menu-user">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Nome Usuario
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Cadastrar Usuário</a></li>
+              <li><a href="#">Deletar Usuário</a></li>
+              <li><a href="#">Sair</a></li>
+            </ul>
           </div>
-          <div class="form-group">
-            <label for="tituloPortugues">2) TÍTULO DA NOTÍCIA EM PORTUGUÊS:</label>
-            <input type="text" class="form-control" id="tituloPortugues" placeholder="Título da notícia em português">
+        <div class="corpo-meio">
+          
+          <div class="titulo-centro">
+            <h3> FORMULÁRIO DE EXTRAÇÃO DE INFORMAÇÕES DE NOTÍCIAS DA MÍDIA SOBRE EVENTOS DE INTERESSE A SAÚDE </h3>
           </div>
-          <div class="form-group">
-            <label for="fonteNoticia">3) FONTE DA NOTÍCIA:</label>
-            <input type="text" class="form-control" id="fonteNoticia" placeholder="Fonte da notícia">
+          <br>
+          <div class="titulo-centro">
+            <h4>DADOS GERAIS DA NOTÍCIA</h4>
           </div>
-          <div class="form-group">
-            <label for="linkNoticia">4) LINK DA NOTÍCIA:</label>
-            <input type="link" class="form-control" id="linkNoticia" placeholder="Link da notícia">
-          </div>
-
-          <div class="container-flex">
-            <div class="form-group padding-date">
-              <label for="linkNoticia">5) DATA DA PUBLICAÇÃO:</label>
-              <input type="date" class="form-control tam-date" id="linkNoticia" placeholder="Link da notícia">
-            </div>
-            <div class="form-group padding-date">
-              <label for="linkNoticia">6) DATA DA ATUALIZAÇÃO:</label>
-              <input type="date" class="form-control tam-date" id="linkNoticia" placeholder="Link da notícia">
-            </div>
-            <div class="form-group padding-date">
-              <label for="linkNoticia">7) DATA DA BUSCA:</label>
-              <input type="date" class="form-control tam-date" id="linkNoticia" placeholder="Link da notícia">
-            </div>
-          </div>
+          <br>
+          <form>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <label for="tituloOriginal">1) TÍTULO ORIGINAL DA NOTÍCIA:</label>
+              <input type="text" class="form-control" id="tituloOriginal" placeholder="Título original da notícia">
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <input type="file" id="exampleInputFile">
-              <p class="help-block">Example block-level help text here.</p>
+              <label for="tituloPortugues">2) TÍTULO DA NOTÍCIA EM PORTUGUÊS:</label>
+              <input type="text" class="form-control" id="tituloPortugues" placeholder="Título da notícia em português">
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Check me out
-              </label>
+            <div class="form-group">
+              <label for="fonteNoticia">3) FONTE DA NOTÍCIA:</label>
+              <input type="text" class="form-control" id="fonteNoticia" placeholder="Fonte da notícia">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+            <div class="form-group">
+              <label for="linkNoticia">4) LINK DA NOTÍCIA:</label>
+              <input type="link" class="form-control" id="linkNoticia" placeholder="Link da notícia">
+            </div>
+
+            <div class="container-flex">
+              <div class="form-group padding-date">
+                <label for="linkNoticia">5) DATA DA PUBLICAÇÃO:</label>
+                <input type="date" class="form-control tam-date" id="linkNoticia" placeholder="Link da notícia">
+              </div>
+              <div class="form-group padding-date">
+                <label for="linkNoticia">6) DATA DA ATUALIZAÇÃO:</label>
+                <input type="date" class="form-control tam-date" id="linkNoticia" placeholder="Link da notícia">
+              </div>
+              <div class="form-group padding-date">
+                <label for="linkNoticia">7) DATA DA BUSCA:</label>
+                <input type="date" class="form-control tam-date" id="linkNoticia" placeholder="Link da notícia">
+              </div>
+            </div>
+            <br>
+            <div class="titulo-centro">
+              <h4>DADOS SOBRE A(S) DOENÇA(S)/AGRAVO(S)</h4>
+            </div>
+            <br>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Check me out
+                </label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
 
 
+        </div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

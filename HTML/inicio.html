@@ -20,15 +20,7 @@
   <body>
     <div class="container-flex">
       <div class="barra-lateral">  
-        <div class="menu-img">
-          <div class="inf-usuario">
-            <h1>Nome_usuario</h1>
-
-            <ul class="list-inline">
-              <li class="list-group-item color"> <a href="#"> <img src="Imagens/logout.png" class="tam-fix" ></a>  </li>
-            </ul>
-          </div>
-        </div>          
+            
         <nav>
           <ul class="list-group font-size">
             <li class="list-group-item back-list" > Menu</li>
@@ -42,6 +34,17 @@
       </div>
 
       <div class="parte-central">
+         <div class="dropdown menu-user">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Nome Usuario
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Cadastrar Usuário</a></li>
+              <li><a href="#">Deletar Usuário</a></li>
+              <li><a href="#">Sair</a></li>
+            </ul>
+          </div>
         <h2>Estatísticas</h2>
 
         <div class="container-flex" id="central">
