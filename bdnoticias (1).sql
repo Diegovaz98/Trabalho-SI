@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 16-Jun-2018 às 00:11
+-- Generation Time: 03-Jul-2018 às 03:29
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -42,10 +42,11 @@ CREATE TABLE IF NOT EXISTS `dadosdoenca` (
   `outrosDados` text,
   `noticias_idNoticias` int(11) NOT NULL,
   `doencas_idDoenca` int(11) NOT NULL,
+  `nomeD` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`iddadosDoenca`),
-  KEY `fk_dadosDoenca_noticias1_idx` (`noticias_idNoticias`),
-  KEY `fk_dadosDoenca_doencas1_idx` (`doencas_idDoenca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fk_dadosDoenca_doencas1_idx` (`doencas_idDoenca`),
+  KEY `fk_dadosDoenca_noticias1_idx` (`noticias_idNoticias`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,17 @@ CREATE TABLE IF NOT EXISTS `doencas` (
   `idDoenca` int(11) NOT NULL AUTO_INCREMENT,
   `nomeDoenca` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idDoenca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `doencas`
+--
+
+INSERT INTO `doencas` (`idDoenca`, `nomeDoenca`) VALUES
+(19, 'Dengue'),
+(20, 'Zika'),
+(21, 'Febre Amarela'),
+(22, 'Aedes');
 
 -- --------------------------------------------------------
 
@@ -68,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `doencas` (
 
 DROP TABLE IF EXISTS `localdoencainternacional`;
 CREATE TABLE IF NOT EXISTS `localdoencainternacional` (
-  `idlocalDoencaInternacional` int(11) NOT NULL,
+  `idlocalDoencaInternacional` int(11) NOT NULL AUTO_INCREMENT,
   `continente` varchar(255) DEFAULT NULL,
   `pais` varchar(255) DEFAULT NULL,
   `regiaoPais` varchar(255) DEFAULT NULL,
@@ -76,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `localdoencainternacional` (
   `dadosDoenca_iddadosDoenca` int(11) NOT NULL,
   PRIMARY KEY (`idlocalDoencaInternacional`),
   KEY `fk_localDoencaInternacional_dadosDoenca1_idx` (`dadosDoenca_iddadosDoenca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -86,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `localdoencainternacional` (
 
 DROP TABLE IF EXISTS `localdoencanacional`;
 CREATE TABLE IF NOT EXISTS `localdoencanacional` (
-  `idlocalDoenca` int(11) NOT NULL,
+  `idlocalDoenca` int(11) NOT NULL AUTO_INCREMENT,
   `regiao` varchar(255) DEFAULT NULL,
   `estado` varchar(255) DEFAULT NULL,
   `municipio` varchar(255) DEFAULT NULL,
@@ -94,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `localdoencanacional` (
   `dadosDoenca_iddadosDoenca` int(11) NOT NULL,
   PRIMARY KEY (`idlocalDoenca`),
   KEY `fk_localDoencaNacional_dadosDoenca1_idx` (`dadosDoenca_iddadosDoenca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -113,10 +124,8 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `dataAtualizacao` date DEFAULT NULL,
   `dataBusca` date DEFAULT NULL,
   `quantidadeDoencas` int(11) DEFAULT NULL,
-  `Usuario_idUsuario` int(11) NOT NULL,
-  PRIMARY KEY (`idNoticias`),
-  KEY `fk_noticias_Usuario_idx` (`Usuario_idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idNoticias`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -126,15 +135,22 @@ CREATE TABLE IF NOT EXISTS `noticias` (
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nomeUsuario` varchar(100) DEFAULT NULL,
   `loginUsuario` varchar(30) DEFAULT NULL,
-  `senhaUsuario` varchar(30) DEFAULT NULL,
+  `senhaUsuario` varchar(33) DEFAULT NULL,
   `cargoUsuario` varchar(45) DEFAULT NULL,
   `dataCadastro` timestamp NULL DEFAULT NULL,
   `nivelAcesso` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nomeUsuario`, `loginUsuario`, `senhaUsuario`, `cargoUsuario`, `dataCadastro`, `nivelAcesso`) VALUES
+(1, 'Administrador', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', '2018-06-25 03:00:00', 2);
 
 --
 -- Constraints for dumped tables
@@ -144,26 +160,20 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Limitadores para a tabela `dadosdoenca`
 --
 ALTER TABLE `dadosdoenca`
-  ADD CONSTRAINT `fk_dadosDoenca_doencas1` FOREIGN KEY (`doencas_idDoenca`) REFERENCES `doencas` (`idDoenca`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_dadosDoenca_noticias1` FOREIGN KEY (`noticias_idNoticias`) REFERENCES `noticias` (`idNoticias`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_dadosDoenca_doencas1` FOREIGN KEY (`doencas_idDoenca`) REFERENCES `doencas` (`idDoenca`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_dadosDoenca_noticias1` FOREIGN KEY (`noticias_idNoticias`) REFERENCES `noticias` (`idNoticias`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `localdoencainternacional`
 --
 ALTER TABLE `localdoencainternacional`
-  ADD CONSTRAINT `fk_localDoencaInternacional_dadosDoenca1` FOREIGN KEY (`dadosDoenca_iddadosDoenca`) REFERENCES `dadosdoenca` (`iddadosDoenca`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_localDoencaInternacional_dadosDoenca1` FOREIGN KEY (`dadosDoenca_iddadosDoenca`) REFERENCES `dadosdoenca` (`iddadosDoenca`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `localdoencanacional`
 --
 ALTER TABLE `localdoencanacional`
-  ADD CONSTRAINT `fk_localDoencaNacional_dadosDoenca1` FOREIGN KEY (`dadosDoenca_iddadosDoenca`) REFERENCES `dadosdoenca` (`iddadosDoenca`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `noticias`
---
-ALTER TABLE `noticias`
-  ADD CONSTRAINT `fk_noticias_Usuario` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_localDoencaNacional_dadosDoenca1` FOREIGN KEY (`dadosDoenca_iddadosDoenca`) REFERENCES `dadosdoenca` (`iddadosDoenca`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
