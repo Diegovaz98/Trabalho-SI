@@ -33,9 +33,12 @@
             </div>
             <div class="padding-10">
                 <button type="submit" name="btnbusca" class="btn btn-success"> Buscar</button>
+                <button type="submit" name="btnexportar" class="btn btn-success"> Exportar</button>
             </div>
+
             <div class="table-responsive">
                         <?php
+                        $dados = '';
                         if(isset($_POST['btnbusca'])){
                             $i = 1;
                             if($busca == "" || $busca == " "){
@@ -50,11 +53,17 @@
                                                     <div class="col-lg-4">Data Atualização: ' . date('d/m/Y', strtotime($record['dataAtualizacao'])) . '</div>
                                                     <div class="col-lg-4">Data Busca: ' . date('d/m/Y', strtotime($record['dataBusca'])) . '</div>
                                                     <div class="col-lg-12">
-                                                        <button class="btn btn-danger delete_product pull-right" style="margin-left: 10px;" data-id="' . $record['idNoticias'] . '">Excluir</button>
+                                                          <button class="btn btn-danger delete_product pull-right" style="margin-left: 10px;" data-id="' . $record['idNoticias'] . '">Excluir</button>
                                                         <a class="btn btn-success pull-right" href="ver.php?id=' . $record['idNoticias'] . '">Ver</a>
                                                     </div>    
                                                  </div>
                                             </div>';
+                                            $dados = "Titulo Original: " . $record['tituloOriginalNoticia'] .
+                                                    "Titulo Portugues: " . $record['tituloOriginalNoticia'] .
+                                                    "Fonte Noticia: " . $record['fonteNoticia'] .
+                                                    "Link da Noticia: " . $record['linkNoticia'] .
+                                                    "Data Publicação: " . date('d/m/Y', strtotime($record['dataPublicacao'])) .
+                                                    "Data Atualização: " . date('d/m/Y', strtotime($record['dataAtualizacao'])) . "\n";
                                 }
                             }else {
                                 while ($record = mysqli_fetch_assoc($bnot)) {
@@ -73,6 +82,13 @@
                                                     </div>    
                                                  </div>
                                             </div>';
+
+                                            $dados = "Titulo Original: " . $record['tituloOriginalNoticia'] .
+                                                    "Titulo Portugues: " . $record['tituloOriginalNoticia'] .
+                                                    "Fonte Noticia: " . $record['fonteNoticia'] .
+                                                    "Link da Noticia: " . $record['linkNoticia'] .
+                                                    "Data Publicação: " . date('d/m/Y', strtotime($record['dataPublicacao'])) .
+                                                    "Data Atualização: " . date('d/m/Y', strtotime($record['dataAtualizacao'])) . "\n";
                                 }
                                 while ($record = mysqli_fetch_assoc($bdoe)) {
                                     $sql = mysqli_query($conexao, "SELECT * FROM noticias WHERE idNoticias = '$record[noticias_idNoticias]' GROUP BY idNoticias");
@@ -93,6 +109,12 @@
                                                  </div>
                                             </div>';
                                         $i++;
+                                        $dados += "Titulo Original: " . $record['tituloOriginalNoticia'] .
+                                                    "Titulo Portugues: " . $record['tituloOriginalNoticia'] .
+                                                    "Fonte Noticia: " . $record['fonteNoticia'] .
+                                                    "Link da Noticia: " . $record['linkNoticia'] .
+                                                    "Data Publicação: " . date('d/m/Y', strtotime($record['dataPublicacao'])) .
+                                                    "Data Atualização: " . date('d/m/Y', strtotime($record['dataAtualizacao'])) . "\n";
                                     }
                                 }
                                 while ($record = mysqli_fetch_assoc($blin)) {
@@ -116,6 +138,12 @@
                                                  </div>
                                             </div>';
                                             $i++;
+                                            $dados += "Titulo Original: " . $record['tituloOriginalNoticia'] .
+                                                    "Titulo Portugues: " . $record['tituloOriginalNoticia'] .
+                                                    "Fonte Noticia: " . $record['fonteNoticia'] .
+                                                    "Link da Noticia: " . $record['linkNoticia'] .
+                                                    "Data Publicação: " . date('d/m/Y', strtotime($record['dataPublicacao'])) .
+                                                    "Data Atualização: " . date('d/m/Y', strtotime($record['dataAtualizacao'])) . "\n";
                                         }
                                     }
 
@@ -141,13 +169,39 @@
                                                  </div>
                                             </div>';
                                             $i++;
+                                            $dados += "Titulo Original: " . $record['tituloOriginalNoticia'] .
+                                                    "Titulo Portugues: " . $record['tituloOriginalNoticia'] .
+                                                    "Fonte Noticia: " . $record['fonteNoticia'] .
+                                                    "Link da Noticia: " . $record['linkNoticia'] .
+                                                    "Data Publicação: " . date('d/m/Y', strtotime($record['dataPublicacao'])) .
+                                                    "Data Atualização: " . date('d/m/Y', strtotime($record['dataAtualizacao'])) . "\n";
                                         }
                                     }
                                 }
                             }
+
                         }
+
+                            if(isset($_POST['btnexportar'])){
+                                $diretorio = "csv/";
+                                $nome = date("Y-m-d-H-i-s");
+                                $nome =  'download-'.$nome.'.csv';
+                                $arquivo = $diretorio . $nome;
+
+                                /*$query = mysqli_query("SELECT * FROM intranet_newsletter ORDER BY nome, email ASC")or die('Falha na instrução SQL: '. mysqli_error());
+                                while($ln=mysqli_fetch_assoc($query)){
+                                    $dados .= "'".$ln['nome']."'";
+                                    $dados .= ",'".$ln['email']."'";
+                                    $dados .= "\n"; 
+                                }*/
+
+                                if(fwrite($file=fopen($arquivo,'w+'),$dados)) {  
+                                    fclose($file);
+                                }
+
+                            }
                         
-                            ?>
+                        ?>
                 </div>
                 
 
